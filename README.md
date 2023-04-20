@@ -5,6 +5,7 @@ To develop a Django application to store and retrieve data from a database using
 
 ## Entity Relationship Diagram
 
+![Entity Relationship Diagram](./entity.jpg)
 
 ## DESIGN STEPS
 
@@ -37,12 +38,35 @@ Records are added and saved in the table inside the database.
 
 
 ## PROGRAM
+```
+Model.py
 
+from django.db import models
+from django.contrib import admin
+
+# Create your models here.
+class Student (models.Model):
+    referencenumber=models.CharField(primary_key=True,max_length=20,help_text="reference number")
+    name=models.CharField(max_length=100)
+    age=models.IntegerField()
+    email=models.EmailField()
+
+
+class StudentAdmin(admin.ModelAdmin):
+    list_display=('referencenumber','name','age','email')
+
+Admin.py
+
+from django.contrib import admin
+from .models import Student,StudentAdmin
+admin.site.register(Student,StudentAdmin)
+```
 
 
 ## OUTPUT
 
-
+![OUTPUT](./out.png)
 
 ## RESULT
-Thus a Django application is successfully developed to store and retrieve data from a database using Object Relational Mapping(ORM).
+
+Program executed Successfully
